@@ -25,11 +25,11 @@ int main()
                     } 
                 }
             }
-            cout << "Letra encontrada: " << rep << endl; 
+            //cout << "Letra encontrada: " << rep << endl; 
             if(rep == '1'){}
             else if(rep >= 'a' and rep <= 'z') sumOfPrios += rep - 'a' + 1; 
             else sumOfPrios += rep - 'A' + 27; 
-            cout << "Prios so far: " << sumOfPrios << endl;
+            //cout << "Prios so far: " << sumOfPrios << endl;
             rep = '1'; 
         }
     }
