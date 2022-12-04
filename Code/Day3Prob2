@@ -34,9 +34,9 @@ int main()
             if(rep2 == '1'){}
             else if(rep2 >= 'a' and rep2 <= 'z') sumOfPrios += rep2 - 'a' + 1; 
             else sumOfPrios += rep2 - 'A' + 27; 
-            cout << "Prios so far: " << sumOfPrios << endl;
+            //cout << "Prios so far: " << sumOfPrios << endl;
             rep.clear(); 
-            cout << "Letra encontrada: " << rep2 <<" y size rep: " << rep.size() <<  endl; 
+            //cout << "Letra encontrada: " << rep2 <<" y size rep: " << rep.size() <<  endl; 
 
             rep2 = '1'; 
         }
