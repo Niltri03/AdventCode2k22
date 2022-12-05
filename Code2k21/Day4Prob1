@@ -40,22 +40,26 @@ void victoria(Board b, int num){
     cout<< "-=-=" << sumatorio <<"-=-=-=" << endl; 
     cout<< "-=-=-=-=-=-=-=-=" << endl; 
     cout<< "-=-=-=-=-=-=-=-=" << endl; 
+    escribeBoard(b);
     found = true;
 }
 
 void marcaNum(Board& b, int x, int y, int num){
     b[x][y] = -1; 
-    if(b[x][0] == b[x][1] == b[x][2] == b[x][3] == b[x][4]) victoria(b, num);
-    if(b[0][y] == b[1][y] == b[2][y] == b[3][y] == b[4][y]) victoria(b, num);
+    if((b[x][0] == -1) and  (b[x][1] == -1) and (b[x][2] == -1) and (b[x][3] == -1) and (b[x][4] == -1)) victoria(b, num);
+    if((b[0][y] == -1) and  (b[1][y] == -1) and (b[2][y] == -1) and (b[3][y] == -1) and (b[4][y] == -1)) victoria(b, num);
 }
 
-void sacarNumero(set<Board>& tableros, int num){ //Devuelve el valor de tablero ganador * 
+void sacarNumero(vector<Board>& tableros, int num){ //Devuelve el valor de tablero ganador * 
     
-    for(set<Board>::iterator it = tableros.begin(); it != tableros.end(); ++it){
+    for(int cnt = 0; cnt < 100; ++cnt){
         if(not found){
             for(int i = 0; i < 5; ++i){
                 for(int j = 0; j < 5; ++j){
-                    if(it[i][j] == num) marcaNum(it, i, j);
+                    if(tableros[cnt][i][j] == num){
+                        cout << "marco un num; " << endl; 
+                        marcaNum(tableros[cnt], i, j, num);
+                    } 
                 }
             }
         }
@@ -67,7 +71,7 @@ void sacarNumero(set<Board>& tableros, int num){ //Devuelve el valor de tablero 
 
 int main()
 {
-    set<Board> boards; 
+    vector<Board> boards(100); 
     vector<int> values;
     int a;
     char c; 
@@ -78,10 +82,11 @@ int main()
     Board b(5, vector<int>(5)); 
     for(int i = 0; i < 100; ++i){
         LeeBoard(b);
-        boards.insert(b);
+        boards[i] = b; 
     }
     int i = 0; 
-    while(not found){
+    while(not found and i < values.size()){
+        cout << "Saco el numero " << values[i] << endl; 
         sacarNumero(boards, values[i]);
         ++i; 
     }
