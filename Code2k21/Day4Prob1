@@ -40,7 +40,7 @@ void victoria(Board b, int num){
     cout<< "-=-=" << sumatorio <<"-=-=-=" << endl; 
     cout<< "-=-=-=-=-=-=-=-=" << endl; 
     cout<< "-=-=-=-=-=-=-=-=" << endl; 
-    escribeBoard(b);
+    //escribeBoard(b);
     found = true;
 }
 
@@ -57,7 +57,7 @@ void sacarNumero(vector<Board>& tableros, int num){ //Devuelve el valor de table
             for(int i = 0; i < 5; ++i){
                 for(int j = 0; j < 5; ++j){
                     if(tableros[cnt][i][j] == num){
-                        cout << "marco un num; " << endl; 
+                        //cout << "marco un num; " << endl; 
                         marcaNum(tableros[cnt], i, j, num);
                     } 
                 }
@@ -86,7 +86,7 @@ int main()
     }
     int i = 0; 
     while(not found and i < values.size()){
-        cout << "Saco el numero " << values[i] << endl; 
+        //cout << "Saco el numero " << values[i] << endl; 
         sacarNumero(boards, values[i]);
         ++i; 
     }
