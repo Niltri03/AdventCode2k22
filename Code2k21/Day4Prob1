@@ -5,23 +5,65 @@ using namespace std;
 
 using Row = vector<int>; 
 using Board = vector<Row>; 
+bool found = false; 
 
-void LeeBoard(set<Board>* b){
-        Board nb(5, vector<int>(5)); 
-        for(int i = 0; i < 5; ++i){
-            for(int j = 0; j < 5; ++j){
-                cin >> nb[i][j];
-            } 
+void LeeBoard(Board& b){
+    int a;
+    for(int i = 0; i < 5; ++i){
+        for(int j = 0; j < 5; ++j){
+            cin >> b[i][j];
+            
+        } 
+    }
+}
+
+void escribeBoard(Board b){
+    for(int i = 0; i < 5; ++i){
+        for(int j = 0; j < 5; ++j){
+            cout << b[i][j] << " ";
+        } 
+        cout << endl; 
+    }
+    cout << endl; 
+}
+
+void victoria(Board b, int num){
+    int sumatorio = 0; 
+    for(int i = 0; i < 5; ++i){
+        for(int j = 0; j < 5; ++j){
+            if(b[i][j] != -1) sumatorio+=b[i][j];
         }
-        b.insert(nb);
-    
+    }
+    sumatorio *= num; 
+    cout<< "-=-=-=-=-=-=-=-=" << endl; 
+    cout<< "-=-=-=-=-=-=-=-=" << endl; 
+    cout<< "-=-=" << sumatorio <<"-=-=-=" << endl; 
+    cout<< "-=-=-=-=-=-=-=-=" << endl; 
+    cout<< "-=-=-=-=-=-=-=-=" << endl; 
+    found = true;
 }
 
-int whoWon(set<Board>* tableros, vector<int>* ganadores){ //Devuelve el valor de tablero ganador * 
-    
-    
-    
+void marcaNum(Board& b, int x, int y, int num){
+    b[x][y] = -1; 
+    if(b[x][0] == b[x][1] == b[x][2] == b[x][3] == b[x][4]) victoria(b, num);
+    if(b[0][y] == b[1][y] == b[2][y] == b[3][y] == b[4][y]) victoria(b, num);
 }
+
+void sacarNumero(set<Board>& tableros, int num){ //Devuelve el valor de tablero ganador * 
+    
+    for(set<Board>::iterator it = tableros.begin(); it != tableros.end(); ++it){
+        if(not found){
+            for(int i = 0; i < 5; ++i){
+                for(int j = 0; j < 5; ++j){
+                    if(it[i][j] == num) marcaNum(it, i, j);
+                }
+            }
+        }
+    } 
+}
+
+
+
 
 int main()
 {
@@ -32,9 +74,15 @@ int main()
     
     while(cin >> a >> c and a != 41)values.push_back(a);
     values.push_back(41);
-    for(int i = 0; i < values.size(); ++i) cout << values[i] << endl; 
     
-    while(LeeBoard(boards)); 
-    whoWon(boards, values); 
-    
+    Board b(5, vector<int>(5)); 
+    for(int i = 0; i < 100; ++i){
+        LeeBoard(b);
+        boards.insert(b);
+    }
+    int i = 0; 
+    while(not found){
+        sacarNumero(boards, values[i]);
+        ++i; 
+    }
 }
