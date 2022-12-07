@@ -46,12 +46,12 @@ int calc(Directory dir){
     return total; 
 }
 
-int calc2(Directory dir, int limUp, int limDown){
+int calc2(Directory dir, int &limUp, int limDown){
     int total = 0; 
-    for(int i = 0; i < dir.subdir.size(); ++i) total += calc(dir.subdir[i]);
+    for(int i = 0; i < dir.subdir.size(); ++i) total += calc2(dir.subdir[i], limUp, limDown);
     total += dir.nestedSize;
     cout << "Tamaño del directorio " << dir.name << ": " << total << endl; 
-    if(total > limDown and total < limUp) limDown = total; 
+    if(total > limDown and total < limUp) limUp = total; 
     return total; 
 }
 
@@ -95,3 +95,4 @@ int main()
         }
     }
 }
+
