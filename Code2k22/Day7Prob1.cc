@@ -6,16 +6,16 @@
 using namespace std;
 
 struct Directory{      
+  string name; 
   Directory* father;   
-  string name;        
   vector<Directory> subdir;
   int nestedSize; 
 } ;
 
-void readLS(Directory& dir){
+void readLS(Directory &dir){
     string a;
     while(cin >> a){
-        if (a == "$") break; 
+        if (a == "$")break;  
         else if(a == "dir"){
             Directory newD; 
             cin >> a; 
@@ -29,17 +29,13 @@ void readLS(Directory& dir){
             dir.nestedSize += stoi(a);
             cin >> a;
         } 
-        cout << "subdirectorios de " << dir.name <<": " << dir.subdir.size() << endl;
-        cout << "tamaño nested de " << dir.name <<": " << dir.nestedSize << endl;
     }
 }
 
-Directory findDirectory(string nam, vector<Directory> s){
+Directory* findDirectory(string nam, vector<Directory> &s){
     
-    for(int i = 0; i < s.size(); ++i) if(s[i].name == nam) return s[i]; 
-    Directory d; 
-    return d;
-    
+    for(int i = 0; i < s.size(); ++i) if(s[i].name == nam) return &s[i];
+    return NULL;
 }
 
 int calc(Directory dir){
@@ -56,31 +52,32 @@ int main()
     slash.name = "slash";
     slash.father = NULL; 
     slash.nestedSize = 0; 
-    Directory * actual; 
+    Directory* actual; 
     actual = &slash; 
     string dollar, cmd, auxS; 
     int auxI;
     cin >> dollar >> cmd; 
     while(1){
         if(cmd == "cd"){
-            cout << "es un CD" << endl; 
             cin >> auxS; 
-            if(auxS == "/"); 
-            if(auxS == "..") actual = actual->father;
+            if(auxS == "/") actual = &slash; 
+            else if(auxS == "..") actual = actual->father;
             else{
-                Directory tmp = findDirectory(auxS, actual->subdir);
-                actual = &tmp;
+                cout << "Estoy en el else y busco el directorio " << auxS << endl;
+                string tilt = actual->subdir[0].name;
+                cout << "El directorio actual contiene a, mira: " << tilt << endl;
+                actual = findDirectory(auxS, actual->subdir);
+                cout << "Estoy en el directorio " << actual->name << endl; 
             } 
             cout << "Estoy en el directorio " << actual->name << endl; 
             cin >> dollar >> cmd; 
         }
         else if(cmd == "ls"){
-            cout << "es un ls" << endl; 
             readLS(*actual); 
+            cout << "size slash: " << slash.subdir.size() << endl;
             cin >> cmd; 
         }
         else{
-            cout << "me voy" << endl; 
             int total = calc(slash); 
             break;
         }
