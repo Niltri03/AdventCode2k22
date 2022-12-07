@@ -42,7 +42,6 @@ int calc(Directory dir, int &res){
     int total = 0; 
     for(int i = 0; i < dir.subdir.size(); ++i) total += calc(dir.subdir[i], res);
     total += dir.nestedSize;
-     cout << "Tamaño del directorio " << dir.name << ": " << total << endl; 
     if(total < 100000) res+=total; 
     return total; 
 }
@@ -64,18 +63,15 @@ int main()
             if(auxS == "/") actual = &slash; 
             else if(auxS == "..") actual = actual->father;
             else{
-                cout << "Estoy en el else y busco el directorio " << auxS << endl;
                 string tilt = actual->subdir[0].name;
-                cout << "El directorio actual contiene a, mira: " << tilt << endl;
                 actual = findDirectory(auxS, actual->subdir);
-                cout << "Estoy en el directorio " << actual->name << endl; 
+                
             } 
-            cout << "Estoy en el directorio " << actual->name << endl; 
+             
             cin >> dollar >> cmd; 
         }
         else if(cmd == "ls"){
             readLS(*actual); 
-            cout << "size slash: " << slash.subdir.size() << endl;
             cin >> cmd; 
         }
         else{
