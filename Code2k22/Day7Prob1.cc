@@ -57,8 +57,8 @@ int main()
     slash.name = "/";
     slash.father = NULL; 
     slash.nestedSize = 0; 
-    Directory cd; 
-    cd = slash; 
+    Directory * actual; 
+    actual = &slash; 
     string dollar, cmd, auxS; 
     int auxI;
     cin >> dollar >> cmd; 
@@ -66,14 +66,14 @@ int main()
         if(cmd == "cd"){
             cout << "es un CMD" << endl; 
             cin >> auxS; 
-            if(auxS == "/") cd = slash; 
-            if(auxS == "..") cd = *cd.father;
-            else cd = findDirectory(auxS, cd.subdir);
+            if(auxS == "/") actual = &slash; 
+            if(auxS == "..") actual = actual->father;
+            else actual = &findDirectory(auxS, actual->subdir);
             cin >> dollar >> cmd; 
         }
         else if(cmd == "ls"){
             cout << "es un ls" << endl; 
-            readLS(cd); 
+            readLS(*actual); 
             cin >> cmd; 
         }
         else{
