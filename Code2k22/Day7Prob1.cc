@@ -38,11 +38,12 @@ Directory* findDirectory(string nam, vector<Directory> &s){
     return NULL;
 }
 
-int calc(Directory dir){
+int calc(Directory dir, int &res){
     int total = 0; 
-    for(int i = 0; i < dir.subdir.size(); ++i) total += calc(dir.subdir[i]);
+    for(int i = 0; i < dir.subdir.size(); ++i) total += calc(dir.subdir[i], res);
     total += dir.nestedSize;
-    cout << "Tamaño del directorio " << dir.name << ": " << total << endl; 
+     cout << "Tamaño del directorio " << dir.name << ": " << total << endl; 
+    if(total < 100000) res+=total; 
     return total; 
 }
 
@@ -78,7 +79,9 @@ int main()
             cin >> cmd; 
         }
         else{
-            int total = calc(slash); 
+            int res = 0; 
+            int total = calc(slash, res); 
+            cout << "Total total: " << res << endl;
             break;
         }
     }
