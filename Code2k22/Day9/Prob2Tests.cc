@@ -49,27 +49,26 @@ bool inRange(pair<int, int> h, pair<int, int> t){
     return false; 
 }
 
-void actualizaColas(vector<pair<int, int>> &v, char dir, vector<pair<int, int>> old){
-     for(int i = 2; i < 10; ++i) v[i] = old[i-1];
-      if(inRange(v[0], v[1]));
-            else {
+void actualizaColas(pair<int, int> &H, pair<int, int> &T, char dir ){
+     if(inRange(H, T));
+        else {
                 if(dir == 'D'){
-                    v[1].first = v[0].first - 1; 
-                    v[1].second = v[0].second; 
+                    T.first = H.first - 1; 
+                    T.second = H.second; 
                 }
                 if(dir == 'U'){
-                    v[1].first = v[0].first + 1; 
-                    v[1].second = v[0].second; 
+                    T.first = H.first + 1; 
+                    T.second = H.second; 
                 } 
                 if(dir == 'R'){
-                    v[1].first = v[0].first;
-                    v[1].second = v[0].second - 1; 
+                    T.first = H.first;
+                    T.second = H.second - 1; 
                 } 
                 if(dir == 'L'){
-                    v[1].first = v[0].first;
-                    v[1].second = v[0].second + 1; 
+                    T.first = H.first;
+                    T.second = H.second + 1; 
                 }
-            }
+        }
         
 }
 
@@ -97,7 +96,7 @@ int main()
             if(dir == 'U') colas[0].first -= 1; 
             if(dir == 'R') colas[0].second += 1; 
             if(dir == 'L') colas[0].second -= 1; 
-            actualizaColas(colas, dir, old); 
+            for(int i = 1; i < colas.size(); ++i)actualizaColas(colas[i-1], colas[i], dir); 
             mark[colas[9].first][colas[9].second] += 1;
             guardaColas(VP, colas);
             --i; 
