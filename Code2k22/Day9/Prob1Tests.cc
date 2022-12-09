@@ -33,6 +33,21 @@ void writeMatC(mChar &m){
     
 }
 
+bool inRange(pair<int, int> h, pair<int, int> t){
+    if(h.first == t.first + 1){
+        if((h.second == t.second - 1) or (h.second == t.second + 1) or (h.second == t.second)) return true; 
+    } 
+    if(h.first == t.first - 1){
+        if((h.second == t.second - 1) or (h.second == t.second + 1) or (h.second == t.second)) return true;
+    }
+    if(h.second == t.second + 1){
+        if((h.first == t.first + 1) or (h.first == t.first - 1) or(h.first == t.first)) return true;
+    } 
+    if(h.second == t.second - 1){
+        if((h.first == t.first + 1) or (h.first == t.first - 1) or(h.first == t.first)) return true;
+    } 
+    return false; 
+}
 int main()
 {
     //mInt VP(100, Row(100, 0));
@@ -49,10 +64,15 @@ int main()
         cin >> i; 
         while(i > 0){
             VP[H.first][H.second] = '.';
+            VP[T.first][T.second] = '.';
             if(dir == 'D') H.first += 1;
             if(dir == 'U') H.first -= 1; 
             if(dir == 'R') H.second += 1; 
             if(dir == 'L') H.second -= 1; 
+            if(H == T);
+            else if(inRange(H, T)){
+                VP[T.first][T.second] = 'T';
+            }
             cout << H.first << " " << H.second << endl; 
             VP[H.first][H.second] = 'H';
             --i; 
