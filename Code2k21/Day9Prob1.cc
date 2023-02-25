@@ -1,65 +1,37 @@
-//WIP
-
-
 #include <iostream>
+using namespace std; 
 #include <vector>
-using namespace std;
 
-using Row = vector<int>; 
-using Matrix = vector<Row>; 
-
+using row = vector<int>;
+using mapaV = vector<row>; 
 
 
-bool evaluate(Matrix& mat, int x, int y, int value){
-    if(x == 0){
-        if(y == 0){ // top left
-            return ((value<mat[1][0]) and (value<mat[0][1]));
-        }
-        if(y == 99){ // top right
-            return ((value<mat[0][98]) and (value<mat[1][99]));
-        }
-        else { // generic top row
-            return ((value<mat[0][y+1]) and (value<mat[0][y+2]) and (value<mat[1][y]));
-        }
-    }
-    if(x == 99){
-        if(y == 0){//bottom left
-            return ((value<mat[99][1]) and (value<mat[98][0]));
-        }
-        if(y == 99){//bottom right
-            return ((value<mat[98][99]) and (value<mat[99][98]));
-        }
-        else{//generic bottom row
-            return ((value<mat[99][y+1]) and (value<mat[99][y-1]) and (value<mat[98][y]));
-        }
-    }
-    else{
-        return((value<mat[x][y+1]) and (value<mat[x][y-1]) and (value<mat[x+1][y]) and (value<mat[x-1][y]));
-    }
+int x = 100;
+mapaV mapa(x+2, row(x+2, 11));
+
+bool evaluate(int i, int j){
+    int aux = mapa[i][j];
+    if(aux >= mapa[i][j+1]) return false;
+    if(aux >= mapa[i][j-1]) return false;
+    if(aux >= mapa[i+1][j]) return false;
+    if(aux >= mapa[i-1][j]) return false;
+    return true;  
 }
-    
 
 int main()
 {
-    int total = 0; 
     char c; 
-    Matrix graph(100, Row(100)) ; 
-    for(int i = 0; i < 100; ++i){
-        for(int j = 0 ; j < 100; ++j) {
+
+    for(int i = 1; i <= x; ++i){
+        for(int j = 1; j <= x; ++j) {
             cin >> c; 
-            graph[i][j] = c - '0'; 
+            mapa[i][j] = c - '0';
         }
     }
-    for(int i = 0; i < 100; ++i){
-        for(int j = 0; j < 100; ++j) {
-            if(evaluate(graph, i, j, graph[i][j])){
-                cout << "evaluated" << endl; 
-                total += 1;
-                total+=graph[i][j];
-            } 
-        }
+    int count = 0; 
+    for(int i = 1; i <= x; ++i){
+        for(int j = 1; j <= x; ++j) if(evaluate(i, j)) count += mapa[i][j] + 1; 
     }
-    cout << "----------" << endl; 
-    cout << "---" << total << "---" << endl; 
-    cout << "----------" << endl; 
+    cout << "count: " << count << endl; 
+
 }
