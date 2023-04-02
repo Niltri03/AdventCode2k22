@@ -20,12 +20,13 @@ public class Main {
                 topval3 = topval2;
                 topval2 = topval1;
                 topval1 = suma;
-            }else if (suma > topval2) {
+            }
+                else if (suma > topval2) {
                 topval3 = topval2;
                 topval2 = suma;
             }
 
-                 else if (suma > topval3) {
+               else if (suma > topval3) {
                     topval3 = suma;
                 }
 
