@@ -31,7 +31,7 @@ public class Main {
 
 
         try{
-            Scanner sc = new Scanner(new File("C:\\Users\\Nacho\\Documents\\programas\\Java\\helloWorld\\src\\data.txt"));
+            Scanner sc = new Scanner(new File(" /*Path*/ data.txt"));
             ejecuta(sc);
         }
         catch(FileNotFoundException ex)
