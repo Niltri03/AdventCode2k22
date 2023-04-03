@@ -39,7 +39,7 @@ public class Main {
 
 
         try{
-            Scanner sc = new Scanner(new File("C:\\Users\\Nacho\\Documents\\programas\\Java\\helloWorld\\src\\data.txt"));
+            Scanner sc = new Scanner(new File(/*path to data*/));
             ejecuta(sc);
         }
         catch(FileNotFoundException ex)
