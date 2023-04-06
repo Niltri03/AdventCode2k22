@@ -113,7 +113,7 @@ public class Main {
 
 
         try{
-        Scanner sc = new Scanner(new File("C:\\Users\\Nacho\\Documents\\programas\\Java\\helloWorld\\src\\data.txt"));
+        Scanner sc = new Scanner(new File("your absolute path here"));
         ejecuta(sc);
         }
         catch(FileNotFoundException ex)
