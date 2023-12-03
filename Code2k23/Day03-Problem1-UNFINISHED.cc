@@ -15,13 +15,13 @@ int seekANumber(int x, int y, vector<vector<char>>& mapita){//Busca y devuelve n
     char c = mapita[x][y];
     result.push_back(c);
     cout << "Hago pushback de " << c; 
-    int i = 1; 
+    int i = -1; 
     while(searchingLeft and y-i >= 0){//buscamos los numeros hacia la izquierda y sustituimos para que no se cuenten doble
         if(mapita[x][y-i] <= '9' and mapita[x][y-i] >= '0'){
             result.insert(result.begin(), mapita[x][y-i]);
             mapita[x][y-i] = '.';
             
-            i++;
+            i--;
         }
         else searchingLeft = false; 
     }
