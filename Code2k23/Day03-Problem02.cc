@@ -69,10 +69,7 @@ int checkAll(int x, int y, vector<vector<char>> mapa){
     if(auxC >= '0' and auxC <= '9') ret.push_back(seekANumber(x+1,y,mapa)); 
     auxC = mapa[x+1][y+1]; 
     if(auxC >= '0' and auxC <= '9') ret.push_back(seekANumber(x+1,y+1,mapa));
-    if(ret.size() == 2){
-        cout << "Lo logre" << endl;
-        return ret[0] * ret[1]; 
-    }
+    if(ret.size() == 2)return ret[0] * ret[1]; 
     return 0; 
 }
 
