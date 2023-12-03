@@ -1,9 +1,8 @@
-
 #include <iostream>
 #include <vector>
 #include <cmath>
 
-int SIZE_ROW = 10; 
+int SIZE_ROW = 140; 
 
 
 using namespace std;
@@ -14,7 +13,6 @@ int seekANumber(int x, int y, vector<vector<char>>& mapita){//Busca y devuelve n
     vector<char> result;
     char c = mapita[x][y];
     result.push_back(c);
-    cout << "Hago pushback de " << c; 
     int i = 1; 
     while(searchingLeft and y-i >= 0){//buscamos los numeros hacia la izquierda y sustituimos para que no se cuenten doble
         if(mapita[x][y-i] <= '9' and mapita[x][y-i] >= '0'){
@@ -28,7 +26,7 @@ int seekANumber(int x, int y, vector<vector<char>>& mapita){//Busca y devuelve n
     i=1;
     while(searchingRight and y+i < SIZE_ROW){//lo mismo con los nums a la derecha
         if(mapita[x][y+i] <= '9' and mapita[x][y+i] >= '0'){
-            result.insert(result.begin(), mapita[x][y+i]);
+            result.push_back(mapita[x][y+i]);
             mapita[x][y+i] = '.';
             
             i++;
@@ -39,21 +37,22 @@ int seekANumber(int x, int y, vector<vector<char>>& mapita){//Busca y devuelve n
     if(result.size() == 0){
         return result[0] - '0';
     }
-    for(int i = result.size(); i >= 0; --i){
+    //for(int i = 0; i < result.size(); ++i) cout << result[i];
+    //cout << endl; 
+    for(int i = result.size()-1; i >= 0; --i){
         double aux = result[i] - '0'; 
-        cout << "aux: " << aux << endl; 
         double ex = result.size() - i; 
         ret += aux * pow(10, ex-1);
-        cout << "sumo a ret" << pow(10, ex-1) << endl; 
          
     }
-    cout << "encuentro el numero "<<ret << endl;
+    //cout << "encuentro el numero "<<ret << endl;
     return ret; 
 }
 
 int checkAll(int x, int y, vector<vector<char>>& mapa){
     char auxC; 
     int ret; 
+    ret = 0; 
     auxC = mapa[x-1][y-1]; 
     if(auxC >= '0' and auxC <= '9') ret += seekANumber(x-1,y-1,mapa); 
     auxC = mapa[x-1][y]; 
@@ -70,7 +69,7 @@ int checkAll(int x, int y, vector<vector<char>>& mapa){
     if(auxC >= '0' and auxC <= '9') ret += seekANumber(x+1,y,mapa); 
     auxC = mapa[x+1][y+1]; 
     if(auxC >= '0' and auxC <= '9') ret += seekANumber(x+1,y+1,mapa);
-    cout << "añado " << ret << " para x" << x << " y " << y << endl; 
+    //cout << "FUNCION CHECKALL AÑADE: " << ret << endl; 
     return ret; 
 }
 
