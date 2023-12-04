@@ -12,7 +12,7 @@ int main(){
             else floor--; 
             if(floor < 0 and finding){//aka the first time we enter the basement
                 cout << i++ << endl;//solution to problem 2
-                finding = !finding;//we aren't finding anymore
+                finding = !finding;//we dont need to search anymore
             }
             
         
