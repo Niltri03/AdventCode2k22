@@ -26,7 +26,7 @@ public class Main {
         
 
         try {
-            Scanner sc = new Scanner(new File("C:\\Users\\Nacho\\Documents\\programas\\Java\\adventOfCode\\src\\input.txt"));
+            Scanner sc = new Scanner(new File("(...)\\input.txt"));
             while(sc.hasNextLine()){
                 sc.next();
                 throwaway = sc.next();
