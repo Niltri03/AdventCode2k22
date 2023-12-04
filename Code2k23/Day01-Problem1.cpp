@@ -6,7 +6,7 @@ int main(){
     string st;
     int firstDigit, lastDigit, aux, result;
     aux = result = 0; 
-    while(cin >> st and st != "done"){
+    while(cin >> st and st != "amongus"){
         for(int i = 0; i < st.length(); i++){
             if(st[i] > '0' and st[i] <= '9'){
                 int a = st[i] - '0';
