@@ -25,7 +25,7 @@ public class Main {
         ArrayList<Long> results = new ArrayList<Long>();//iremos guardando los resultados de las conversiones
 
         try {
-            Scanner sc = new Scanner(new File("C:\\Users\\Nacho\\Documents\\programas\\Java\\adventOfCode\\src\\input.txt"));
+            Scanner sc = new Scanner(new File("(...)\\input.txt"));
             sc.next();
             while(sc.hasNextLong()) {
                 results.add(sc.nextLong());
