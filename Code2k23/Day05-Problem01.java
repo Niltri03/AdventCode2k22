@@ -7,16 +7,6 @@ import java.util.Scanner;
 import static java.lang.Math.pow;
 
 public class Main {
-    static int WIN_NUMS = 10; //5 testing, 10 input
-    static int BET_NUMS = 25; //8 testing, 25 input
-    static int NB_GAMES = 213; //6 testing, 213 input
-
-    public static String removeLastChar(String s) {
-        return (s == null || s.length() == 0)
-                ? null
-                : (s.substring(0, s.length() - 1));
-    }
-
 
     public static void main(String[] args) {
 
