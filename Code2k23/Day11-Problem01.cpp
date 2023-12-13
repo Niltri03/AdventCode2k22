@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <set>
 #include <fstream>
 #include <sstream>
 #include <iostream> 
@@ -50,6 +51,28 @@ int main(){
         
     }
     checkAllDotsVerticales(); 
-    writeMatrix(); 
+    //writeMatrix(); 
+    set<pair<int, int>> cosasACheckear;
+    for(int i = 0; i < c.size(); ++i){
+        for(int j = 0; j < c[i].size(); ++j) if(c[i][j] == '#'){
+            cosasACheckear.insert(make_pair(i,j));//añadimos a un vector las posiciones a comprobar posteriorment,.
+        }
+    }
+    int contador = 0; 
+    for(set<pair<int, int>>::iterator it = cosasACheckear.begin(); it != cosasACheckear.end(); ++it){
+        for(set<pair<int, int>>::iterator it2 = it; it2 != cosasACheckear.end(); ++it2){
+            it2++;
+            if(it2 != cosasACheckear.end()){ 
+            int x1 = it->first;
+            int x2 = it2->first;
+            int y1 = it->second;
+            int y2 = it2->second; 
+            ret += abs(x1-x2)+abs(y1-y2); 
+            contador++; 
+            }
+            it2--;
+        }
+
+    }
     cout << "solucion: " << ret;
 }    
