@@ -1,5 +1,5 @@
 '''
-Idealmente hacerlo así, estoy en pc publico rn, aparte al ser solo una string es mas facil asi 
+if u prefer
 f = open("input15.txt")
 s = f.read()
 '''
