@@ -29,13 +29,12 @@ def calculaValor(boxes):
 
 
 
-s = "your input here" 
-cosas = s.split(",")#we divide the input into an array of substringsboxes = []
+s = "your input"
+cosas = s.split(",")#we divide the input into an array of substrings
+boxes = []
 for i in range(256): 
-    auxPair = (1,2)
-    newArray = [auxPair]
+    newArray = []
     boxes.append(newArray)
-    boxes[i].pop(0)
 for palabra in cosas:#for every word
     hash = 0 #the word's current value 
     codigo = ""
@@ -57,4 +56,4 @@ for palabra in cosas:#for every word
                 else: 
                     boxes[hash].append((codigo, palabra[letra+1]))
     #printMatrix(boxes)
-print(calculaValor(boxes))
+print("Total focusing power", calculaValor(boxes))
