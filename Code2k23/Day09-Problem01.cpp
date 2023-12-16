@@ -26,10 +26,10 @@ void writeMatrix(codigo c){
     cout << "-----------------" << endl;
 }
 
-bool checkAllZeros(vector<long long> v){
+bool checkAllZeros(iteracion v){
     int aux = 0; 
-    for(int i = 0; i < v.size(); ++i)aux += v[i]; 
-    return aux == 0;  
+    for(int i = 0; i < v.size(); ++i)if(v[i] != 0) return false; 
+    return true; 
 }
 
 vector<long long> extrapolate(vector<long long> v){
